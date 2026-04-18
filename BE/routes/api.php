@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarberController;
@@ -29,4 +30,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/services/{shop}', [ServiceController::class, 'store']);
     Route::put('/services/{service}/shop/{shop}', [ServiceController::class, 'update']);
     Route::delete('/services/{service}/shop/{shop}', [ServiceController::class, 'delete']);
+
+    Route::post('/barber/{shop}', [BarberController::class, 'store']);
+    Route::put('/barber/{barber}/shop/{shop}', [BarberController::class, 'update']);
+    Route::delete('/barber/{barber}/shop/{shop}', [BarberController::class, 'delete']);
+    Route::get('/barber/{barber}/shop/{shop}/restore', [BarberController::class, 'restore'])->withTrashed();
+
+
+    Route::get('/appointment/shop/{shop}', [AppointmentController::class, 'index']);
+    Route::get('/appointment/{appointment}', [AppointmentController::class, 'show']);
+    Route::post('/appointment/shop/{shop}/barber/{barber}/service/{service}', [AppointmentController::class, 'store']);
 });
