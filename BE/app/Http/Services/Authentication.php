@@ -36,7 +36,7 @@ class Authentication {
             ]);
 
         } catch (ValidationException $e) {
-            return $this->failed($e->getMessage());
+            return $this->errorResponse($e->getMessage(), $e->errors());
         } catch (\Throwable $e) {
             return $this->error(CustomResponse::SYSTEM_ERROR);
         }
