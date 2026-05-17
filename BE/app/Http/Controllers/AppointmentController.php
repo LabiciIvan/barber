@@ -16,9 +16,9 @@ class AppointmentController extends Controller
         return $appointmentService->index($shop);
     }
 
-    public function show(Appointment $appointment, Shop $shop, AppointmentService $appointmentService)
+    public function show(Appointment $appointment, AppointmentService $appointmentService)
     {
-        return $appointmentService->show($appointment, $shop);
+        return $appointmentService->show($appointment);
     }
 
     public function store(StoreAppointmentRequest $request, Shop $shop, User $barber, Service $service, AppointmentService $appointmentService)
