@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarberController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -21,6 +22,8 @@ Route::get('/shops/{shop}/services', [ServiceController::class, 'index']);
 
 // Private routes
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/users/show', [UserController::class, 'show']);
+
     Route::get('/shops/{shop}/theme', [ShopController::class, 'theme']);
     Route::post('/shops', [ShopController::class, 'store']);
     Route::put('/shops/{shop}', [ShopController::class, 'update']);
@@ -39,5 +42,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/appointment/shop/{shop}', [AppointmentController::class, 'index']);
     Route::get('/appointment/{appointment}', [AppointmentController::class, 'show']);
-    Route::post('/appointment/shop/{shop}/barber/{barber}/service/{service}', [AppointmentController::class, 'store']);
+    Route::post('/appointment/shop/{shop}/barber/{barber}/service/{service}', [AppointmentController::class, 'store'])->scopeBindings();
 });
