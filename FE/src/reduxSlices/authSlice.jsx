@@ -29,5 +29,14 @@ const authSlice = createSlice({
   },
 });
 
+// Redux Selectors -> used in components to show the state.
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectIsLoading = (state) => state.auth.isLoading;
+export const selectUsers = (state) => state.auth.user;
+export const selectBearerToken = (state) => state.auth.bearerToken;
+
+// Redux Actions -> used in components to modify the state.
 export const { login, logout, setLoading, setUser } = authSlice.actions;
+
+// Redux Reducer -> used in store to configure state.
 export default authSlice.reducer;
