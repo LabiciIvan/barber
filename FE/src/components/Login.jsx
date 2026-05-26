@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoading, login } from "../reduxSlices/authSlice";
+import { setLoading, login, selectIsLoading} from "../reduxSlices/authSlice";
 import authService from "../services/authService";
 import LoadingSpinner from "./LoadingSpinner";
 
 const Login = () => {
 
-    const { isLoading } = useSelector(state => state.auth);
-
     const dispatch = useDispatch();
+
+    const { isLoading } = useSelector(selectIsLoading);
 
     const [generalError, setGeneralError] = useState(null);
 
