@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../reduxSlices/authSlice";
+import { logout, selectIsAuthenticated } from "../reduxSlices/authSlice";
 
 function Navbar() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const [open, setOpen] = useState(false);
 
