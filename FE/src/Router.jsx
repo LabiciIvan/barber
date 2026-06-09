@@ -10,7 +10,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      { path: "login", element: <PublicRoute> <Login /> </PublicRoute> },
+      {
+        path: "login",
+        element: <PublicRoute> <Login /> </PublicRoute>
+      },
       {
         path: "app",
         element: <ProtectedRoute><App /></ProtectedRoute>,
