@@ -1,34 +1,63 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useSelector, useDispatch } from 'react-redux'
+import userService from './services/userService';
+import { selectBearerToken, selectUsers, setUser} from './reduxSlices/authSlice';
+import shopService from './services/shopService';
+import { selectorShops, setShops } from './reduxSlices/shopSlice';
 
 export default function App() {
+  const dispatch    = useDispatch();
 
-  // useEffect(() => {
-  // const fetchTest = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:8000/api/user');
+  const bearerToken = useSelector(selectBearerToken);
 
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`);
-  //     }
+  const user        = useSelector(selectUsers);
 
-  //     const data = await response.json();
-  //     console.log('API data:', data);
-  //   } catch (error) {
-  //     console.error('Fetch error:', error);
-  //   }
-  // };
+  const shops       = useSelector(selectorShops);
 
-  // fetchTest();
-  // }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+
+        if (!user && bearerToken) {
+          const details = await userService.show(bearerToken);
+
+          dispatch(setUser(details.data));
+        }
+
+        if (!shops) {
+          const detailsShop = await shopService.index();
+          console.log("detailsShop:", detailsShop.data);
+
+          dispatch(setShops(detailsShop.data));
+        }
+
+
+      } catch (error) {
+        console.log('Error API call: ', error);
+      }
+    })();
+
+  }, [bearerToken]);
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-      <h1 className="text-4xl font-bold">Tailwind + React works ✅</h1>
+      <h1 className="text-4xl font-bold">Barber</h1>
+      {
+        user ?
+        <h1 className="text-4xl font-bold">Hi, {user.name}</h1>
+        :
+        ''
+      }
 
-      <button className='bg-pink-500 p-2 rounded-md hover:bg-red-200' >Click</button>
+      {
+        shops ? 
+        <div>Have shops</div>
+        :
+        'No shops'
+      }
+      
     </div>
   )
 }
