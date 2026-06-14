@@ -11,6 +11,8 @@ const userService = {
 
         const responseData = await res.json();
 
+        console.log('--responseData--', responseData)
+
         if (!res.ok) {
             const errorMessage = responseData?.errors?.email?.[0] || responseData?.message || "Error getting user data";
 
