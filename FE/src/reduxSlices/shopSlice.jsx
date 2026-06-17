@@ -15,7 +15,7 @@ const shopSlice = createSlice({
 });
 
 // Export selectors
-export const selectorShops = (state) => {state.shop.shops}
+export const selectorShops = (state) => state.shop.shops;
 
 // Export actions
 export const {setShops} = shopSlice.actions;
