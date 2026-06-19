@@ -8,7 +8,7 @@ const Login = () => {
 
     const dispatch = useDispatch();
 
-    const { isLoading } = useSelector(selectIsLoading);
+    const isLoading = useSelector(selectIsLoading);
 
     const [generalError, setGeneralError] = useState(null);
 
@@ -34,14 +34,17 @@ const Login = () => {
 
             if (response.status === 'failed') {
                 setGeneralError(() => response.data);
+                dispatch(setLoading(false));
             }
 
             if(response.status === 'success') {
+                // save token
+                localStorage.setItem("token", response.data.token);
                 dispatch(login(response.data.token));
+                dispatch(setLoading(false));
             }
 
             console.log('response', response);
-            dispatch(setLoading(false));
         } catch (err) {
             dispatch(setLoading(false));
 
