@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('duration_minutes');
             $table->float('price', 2);
             $table->boolean('active')->default(false);
+            $table->softDeletes();
         });
     }
 
