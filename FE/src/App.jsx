@@ -41,26 +41,6 @@ export default function App() {
   }, [bearerToken]);
 
 
-  // return (
-  //   <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-  //     <h1 className="text-4xl font-bold">Barber</h1>
-  //     {
-  //       user ?
-  //       <h1 className="text-4xl font-bold">Hi, {user.name}</h1>
-  //       :
-  //       ''
-  //     }
-
-  //     {
-  //       shops ? 
-  //       <div>Have shops</div>
-  //       :
-  //       'No shops'
-  //     }
-
-  //   </div>
-  // )
-
 return (
   <div className="min-h-screen bg-slate-900 text-white p-6">
     <div className="max-w-5xl mx-auto">
