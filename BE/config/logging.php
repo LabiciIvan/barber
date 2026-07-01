@@ -52,6 +52,13 @@ return [
 
     'channels' => [
 
+        'requests' => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/requests.log'),
+            'level'  => 'info',
+            'days'   => 14,
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', (string) env('LOG_STACK', 'single')),
