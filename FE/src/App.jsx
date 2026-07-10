@@ -27,7 +27,6 @@ export default function App() {
 
         if (!shops) {
           const detailsShop = await shopService.index();
-          console.log("detailsShop:", detailsShop.data);
 
           dispatch(setShops(detailsShop.data));
         }
@@ -45,10 +44,7 @@ return (
   <div className="min-h-screen bg-slate-900 text-white p-6">
     <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-4xl font-bold">Barber</h1>
-        {user && (
-          <p className="text-lg text-slate-300">Hi, {user.name}</p>
-        )}
+        <h1 className="text-xl font-bold">Explore trusted barber and choose the perfect spot for your next fresh cut.</h1>
       </div>
 
       {shops && shops.length > 0 ? (
