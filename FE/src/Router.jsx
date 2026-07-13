@@ -3,7 +3,9 @@ import PublicRoute from "./components/PublicRoute";
 import RootLayout from "./components/RootLayout";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import App from "./App";
+import Shop from "./pages/shop";
+import Booking from "./pages/booking";
+import Home from "./pages/home";
 
 const router = createBrowserRouter([
   {
@@ -15,9 +17,17 @@ const router = createBrowserRouter([
         element: <PublicRoute> <Login /> </PublicRoute>
       },
       {
-        path: "app",
-        element: <ProtectedRoute><App /></ProtectedRoute>,
+        path: "home",
+        element: <ProtectedRoute><Home /></ProtectedRoute>,
       },
+      {
+        path: "shops/:id",
+        element: <ProtectedRoute><Shop /></ProtectedRoute>,
+      },
+      {
+        path: "booking/shop/:shopId/service/:serviceId",
+        element: <ProtectedRoute><Booking /></ProtectedRoute>
+      }
     ],
   },
 ]);
