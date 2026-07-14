@@ -25,13 +25,13 @@ function Navbar() {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <Link to="/app" className="font-bold text-lg">
+          <Link to="/home" className="font-bold text-lg">
             Barber
           </Link>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center gap-6">
-            <NavLink to="/app" className="text-gray-600 hover:text-black">
+            <NavLink to="/home" className="text-gray-600 hover:text-black">
               Home
             </NavLink>
 
@@ -66,7 +66,7 @@ function Navbar() {
         {/* Mobile menu */}
         {open && (
           <div className="md:hidden flex flex-col gap-3 pb-4">
-            <NavLink to="/app" onClick={() => setOpen(false)}>
+            <NavLink to="/home" onClick={() => setOpen(false)}>
               Home
             </NavLink>
 
