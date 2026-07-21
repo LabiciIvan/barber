@@ -5,7 +5,7 @@ import { selectIsAuthenticated } from "../reduxSlices/authSlice";
 function PublicRoute({ children }) {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  if (isAuthenticated) return <Navigate to="/app" replace />;
+  if (isAuthenticated) return <Navigate to="/home" replace />;
 
   return children;
 }
