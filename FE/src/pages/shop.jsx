@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import shopService from "../services/shopService";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -14,9 +14,9 @@ const Shop = () => {
 
     const [services, setServices]               = useState([]);
 
-    const [barbers, setBarbers]                 = useState([]);
-
     const [shopError, setShopError]             = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -76,12 +76,12 @@ return (
           </div>
         </div>
         <a
-          href={`https://${shop.subdomain}.yourdomain.com`}
+          href={`https://${shop.subdomain}`}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 mt-3 text-xs text-blue-400 bg-blue-500/10 border border-blue-500/30 rounded-full px-3 py-1"
         >
-          ↗ {shop.subdomain}.yourdomain.com
+          ↗ {shop.subdomain}
         </a>
       </div>
     )}
@@ -102,6 +102,7 @@ return (
             <div
               key={service.id}
               className="mx-4 mb-2.5 bg-slate-800 rounded-2xl border border-slate-700 p-4 flex items-center gap-3 active:scale-95 transition-transform"
+              onClick={() => navigate(`/booking/shop/${id}/service/${service.id}`)}
             >
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-lg flex-shrink-0">
                 {serviceIcon(service.name)}
