@@ -1,6 +1,8 @@
+const url = "http://localhost:8000/api";
+
 const shopService = {
     index: async(data) => {
-        const res = await fetch('http://localhost:8000/api/shops/', {
+        const res = await fetch(`${url}/shops/`, {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -20,7 +22,64 @@ const shopService = {
         }
 
         return responseData;
-    }
+    },
+    show: async(id) => {
+        const res = await fetch(`${url}/shops/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            method: 'GET',
+        });
+
+        const responseData = await res.json();
+
+        if (!res.ok) {
+            throw {
+                message: res.statusText,
+            }
+        }
+
+        return responseData;
+    },
+    showShopBarbers: async(id) => {
+        const res = await fetch(`${url}/shops/${id}/barbers`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            method: 'GET'
+        });
+
+        const responseData = await res.json();
+
+        if (!res.ok) {
+            throw {
+                message: res.statusText,
+            }
+        }
+
+        return responseData;
+    },
+    showShopServices: async(id) => {
+        const res = await fetch(`${url}/shops/${id}/services`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            method: 'GET'
+        });
+
+        const responseData = await res.json();
+
+        if (!res.ok) {
+            throw {
+                message: res.statusText,
+            }
+        }
+
+        return responseData;
+    },
 }
 
 export default shopService;
