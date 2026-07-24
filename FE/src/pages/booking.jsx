@@ -18,8 +18,6 @@ const Booking = () => {
 
                 setBarbers((prev) => barbers.data);
 
-                console.log('---barbers----', barbers);
-
             } catch (error) {
                 console.log('Api call - booking page error: ', error);
             }
