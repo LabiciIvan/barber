@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import shopService from "../services/shopService";
+import appointmentService from "../services/appointmentService";
+import { selectBearerToken } from "../reduxSlices/authSlice";
+import { useSelector } from "react-redux";
 
 const Booking = () => {
 
@@ -10,6 +13,8 @@ const Booking = () => {
 
     const [selectedBarber, setSelectedBarber] = useState({});
 
+            const token = useSelector(selectBearerToken);
+    
     useEffect(() => {
         (async () => {
             try {
@@ -24,8 +29,23 @@ const Booking = () => {
         })();
     }, [shopId])
 
+    console.log(selectedBarber.id);
     console.log({shopId});
     console.log({serviceId});
+
+
+    const makeAppointment = async () => {
+        try {
+
+
+
+            console.log('token', token);
+
+            const response = await appointmentService.store(shopId, selectedBarber.id, serviceId, {}, token);
+        } catch (error) {
+            console.log('Error making and appointment', error);
+        }
+    }
 
     return (
         <div className="min-h-screen bg-slate-900 text-white p-6">
@@ -77,6 +97,20 @@ const Booking = () => {
                             </div>
                         );
                     })}
+
+                    {
+                        selectedBarber ?
+                        <div>
+                            <button
+                                className="border-blue-700 bg-blue-800/60 hover:border-slate-600 hover:bg-slate-800 p-2 rounded"
+                                onClick={makeAppointment}
+                            >
+                            Submit
+                            </button>
+                        </div>
+                        :
+                        ''
+                    }
                 </div>
 
             </div>
