@@ -42,5 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/appointment/shop/{shop}', [AppointmentController::class, 'index']);
     Route::get('/appointment/{appointment}', [AppointmentController::class, 'show']);
-    Route::post('/appointment/shop/{shop}/barber/{barber}/service/{service}', [AppointmentController::class, 'store'])->scopeBindings();
+    Route::post('/appointment/shop/{shop}/service/{service}/barber/{barber}', [AppointmentController::class, 'store'])
+    ->scopeBindings();
 });
