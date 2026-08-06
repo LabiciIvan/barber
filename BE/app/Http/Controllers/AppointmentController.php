@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\Service;
 use App\Models\Shop;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
 {
@@ -23,6 +24,7 @@ class AppointmentController extends Controller
 
     public function store(StoreAppointmentRequest $request, Shop $shop, User $barber, Service $service, AppointmentService $appointmentService)
     {
+        Log::debug('----in store method---');
         return $appointmentService->store($request->validated(), $shop, $barber, $service);
     }
 }
